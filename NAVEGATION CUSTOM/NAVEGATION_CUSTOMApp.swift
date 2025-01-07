@@ -13,8 +13,9 @@ struct NAVEGATION_CUSTOMApp: App {
 
     var body: some Scene {
         WindowGroup {
-            FirstView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            FirstView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ViewControllerRepresentable()
         }
     }
 }

@@ -9,61 +9,80 @@ import UIKit
 
 class ViewControllerTwo: UIViewController {
     
+    private lazy var scrollView: UIScrollView = {
+           let scrollView = UIScrollView()
+           scrollView.translatesAutoresizingMaskIntoConstraints = false
+           return scrollView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollView()
         setupButtons()
     }
     
+    private func setupScrollView() {
+          view.addSubview(scrollView)
+          NSLayoutConstraint.activate([
+              scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+              scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+              scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+              scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+          ])
+    }
     private func setupButtons() {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
+        scrollView.addSubview(stackView)
         
         // Configurar constraints
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: 350)
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            // Esta constraint es importante para que el stackView tome el ancho del scrollView menos los márgenes
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
         ])
         
         // Crear botones para diferentes estilos
         let presentations = [
-            ("Automatic - With CovertVertial", PresentationStyle.automatic, TransitionStyle.coverVertical),
-            ("Automatic - With CrosDissolve", PresentationStyle.automatic, TransitionStyle.crossDissolve),
-            ("Automatic - With FlipHorizontal", PresentationStyle.automatic, TransitionStyle.flipHorizontal),
-            ("Automatic - With PartialCurl", PresentationStyle.automatic, TransitionStyle.partialCurl), //No funciona al parecer es por versión de MAC o XCODE
+            ("1. Automatic - With CovertVertial", PresentationStyle.automatic, TransitionStyle.coverVertical),
+            ("2. Automatic - With CrosDissolve", PresentationStyle.automatic, TransitionStyle.crossDissolve),
+            ("3. Automatic - With FlipHorizontal", PresentationStyle.automatic, TransitionStyle.flipHorizontal),
+            ("4. Automatic - With PartialCurl", PresentationStyle.automatic, TransitionStyle.partialCurl), //No funciona al parecer es por versión de MAC o XCODE
 //
-            ("CurrentContext - With CovertVertial", PresentationStyle.currentContext, TransitionStyle.coverVertical),
-            ("CurrentContext - With CrosDissolve", PresentationStyle.currentContext, TransitionStyle.crossDissolve),
-            ("CurrentContext - With FlipHorizontal", PresentationStyle.currentContext, TransitionStyle.flipHorizontal),
-            ("CurrentContext - With PartialCurl", PresentationStyle.currentContext, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
+            ("5. CurrentContext - With CovertVertial", PresentationStyle.currentContext, TransitionStyle.coverVertical),
+            ("6. CurrentContext - With CrosDissolve", PresentationStyle.currentContext, TransitionStyle.crossDissolve),
+            ("7. CurrentContext - With FlipHorizontal", PresentationStyle.currentContext, TransitionStyle.flipHorizontal),
+            ("8. CurrentContext - With PartialCurl", PresentationStyle.currentContext, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
-            ("FormSheet - With CovertVertial", PresentationStyle.formSheet, TransitionStyle.coverVertical),
-            ("FormSheet - With CrosDissolve", PresentationStyle.formSheet, TransitionStyle.crossDissolve),
-            ("FormSheet - With FlipHorizontal", PresentationStyle.formSheet, TransitionStyle.flipHorizontal),
-            ("FormSheet - With PartialCurl", PresentationStyle.formSheet, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
+            ("9. FormSheet - With CovertVertial", PresentationStyle.formSheet, TransitionStyle.coverVertical),
+            ("10. FormSheet - With CrosDissolve", PresentationStyle.formSheet, TransitionStyle.crossDissolve),
+            ("11. FormSheet - With FlipHorizontal", PresentationStyle.formSheet, TransitionStyle.flipHorizontal),
+            ("12. FormSheet - With PartialCurl", PresentationStyle.formSheet, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
-            ("FullScreen - With CovertVertial", PresentationStyle.fullScreen, TransitionStyle.coverVertical),
-            ("FullScreen - With CrosDissolve", PresentationStyle.fullScreen, TransitionStyle.crossDissolve),
-            ("FullScreen - With FlipHorizontal", PresentationStyle.fullScreen, TransitionStyle.flipHorizontal),
-            ("FullScreen - With PartialCurl", PresentationStyle.fullScreen, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
+            ("13. FullScreen - With CovertVertial", PresentationStyle.fullScreen, TransitionStyle.coverVertical),
+            ("14. FullScreen - With CrosDissolve", PresentationStyle.fullScreen, TransitionStyle.crossDissolve),
+            ("15. FullScreen - With FlipHorizontal", PresentationStyle.fullScreen, TransitionStyle.flipHorizontal),
+            ("16. FullScreen - With PartialCurl", PresentationStyle.fullScreen, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
-            ("OverCurrentContext - With CovertVertial", PresentationStyle.overCurrentContext, TransitionStyle.coverVertical),
-            ("OverCurrentContext - With CrosDissolve", PresentationStyle.overCurrentContext, TransitionStyle.crossDissolve),
-            ("OverCurrentContext - With FlipHorizontal", PresentationStyle.overCurrentContext, TransitionStyle.flipHorizontal),
-            ("OverCurrentContext - With PartialCurl", PresentationStyle.overCurrentContext, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
+            ("17. OverCurrentContext - With CovertVertial", PresentationStyle.overCurrentContext, TransitionStyle.coverVertical),
+            ("18. OverCurrentContext - With CrosDissolve", PresentationStyle.overCurrentContext, TransitionStyle.crossDissolve),
+            ("19. OverCurrentContext - With FlipHorizontal", PresentationStyle.overCurrentContext, TransitionStyle.flipHorizontal),
+            ("20. OverCurrentContext - With PartialCurl", PresentationStyle.overCurrentContext, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
-            ("OverFullScreen - With CovertVertial", PresentationStyle.overFullScreen, TransitionStyle.coverVertical),
-            ("OverFullScreen - With CrosDissolve", PresentationStyle.overFullScreen, TransitionStyle.crossDissolve),
-            ("OverFullScreen - With FlipHorizontal", PresentationStyle.overFullScreen, TransitionStyle.flipHorizontal),
-            ("OverFullScreen - With PartialCurl", PresentationStyle.overFullScreen, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
+            ("21. OverFullScreen - With CovertVertial", PresentationStyle.overFullScreen, TransitionStyle.coverVertical),
+            ("22. OverFullScreen - With CrosDissolve", PresentationStyle.overFullScreen, TransitionStyle.crossDissolve),
+            ("23. OverFullScreen - With FlipHorizontal", PresentationStyle.overFullScreen, TransitionStyle.flipHorizontal),
+            ("24. OverFullScreen - With PartialCurl", PresentationStyle.overFullScreen, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
-            ("PageSheet - With CovertVertial", PresentationStyle.pageSheet, TransitionStyle.coverVertical),
-            ("PageSheet - With CrosDissolve", PresentationStyle.pageSheet, TransitionStyle.crossDissolve),
-            ("PageSheet - With FlipHorizontal", PresentationStyle.pageSheet, TransitionStyle.flipHorizontal),
-            ("PageSheet - With PartialCurl", PresentationStyle.pageSheet, TransitionStyle.partialCurl)
+            ("25. PageSheet - With CovertVertial", PresentationStyle.pageSheet, TransitionStyle.coverVertical),
+            ("26. PageSheet - With CrosDissolve", PresentationStyle.pageSheet, TransitionStyle.crossDissolve),
+            ("27.PageSheet - With FlipHorizontal", PresentationStyle.pageSheet, TransitionStyle.flipHorizontal),
+            ("28. PageSheet - With PartialCurl", PresentationStyle.pageSheet, TransitionStyle.partialCurl)
         ]
         
         for (title, presentation, transition) in presentations {

@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewControllerTwo: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
@@ -29,9 +30,7 @@ class ViewControllerTwo: UIViewController {
         
         // Crear botones para diferentes estilos
         let presentations = [
-//            PresentationStyle
-//            case automatic
-//            case currentContext       
+//            PresentationStyle     
 //            case formSheet
 //            case fullScreen
 //            case overCurrentContext
@@ -48,12 +47,12 @@ class ViewControllerTwo: UIViewController {
             ("Automatic - With CovertVertial", PresentationStyle.automatic, TransitionStyle.coverVertical),
             ("Automatic - With CrosDissolve", PresentationStyle.automatic, TransitionStyle.crossDissolve),
             ("Automatic - With FlipHorizontal", PresentationStyle.automatic, TransitionStyle.flipHorizontal),
-//            ("Automatic - With PartialCurl", PresentationStyle.automatic, TransitionStyle.partialCurl),
-//            
-//            ("CurrentContext - With CovertVertial", PresentationStyle.currentContext, TransitionStyle.coverVertical),
-//            ("CurrentContext - With CrosDissolve", PresentationStyle.currentContext, TransitionStyle.crossDissolve),
-//            ("CurrentContext - With FlipHorizontal", PresentationStyle.currentContext, TransitionStyle.flipHorizontal),
-//            ("CurrentContext - With PartialCurl", PresentationStyle.currentContext, TransitionStyle.partialCurl),
+            ("Automatic - With PartialCurl", PresentationStyle.automatic, TransitionStyle.partialCurl), //No funciona al parecer es por versión de MAC o XCODE
+//
+            ("CurrentContext - With CovertVertial", PresentationStyle.currentContext, TransitionStyle.coverVertical),
+            ("CurrentContext - With CrosDissolve", PresentationStyle.currentContext, TransitionStyle.crossDissolve),
+            ("CurrentContext - With FlipHorizontal", PresentationStyle.currentContext, TransitionStyle.flipHorizontal),
+            ("CurrentContext - With PartialCurl", PresentationStyle.currentContext, TransitionStyle.partialCurl), // Tampoco funciona el partialCurl
             
             
             
@@ -84,8 +83,12 @@ class ViewControllerTwo: UIViewController {
             (PresentationStyle.automatic, TransitionStyle.coverVertical),
             (PresentationStyle.automatic, TransitionStyle.crossDissolve),
             (PresentationStyle.automatic, TransitionStyle.flipHorizontal),
-//            (PresentationStyle.automatic, TransitionStyle.partialCurl),
-
+            (PresentationStyle.automatic, TransitionStyle.partialCurl),
+            
+            (PresentationStyle.currentContext, TransitionStyle.coverVertical),
+            (PresentationStyle.currentContext, TransitionStyle.crossDissolve),
+            (PresentationStyle.currentContext, TransitionStyle.flipHorizontal),
+            (PresentationStyle.currentContext, TransitionStyle.partialCurl),
             
             
             (PresentationStyle.pageSheet, TransitionStyle.crossDissolve),
